@@ -2,6 +2,7 @@ import urllib
 import urllib2
 import httplib
 import mimetypes
+import mimetools
 
 endpoint = "http://rest.receptor.tarpipe.net:8000/"
 
@@ -36,18 +37,17 @@ class TarPipe:
 				'Content-Type': content_type
 				}
 			print body,headers
-			#h.request('POST', req.get_selector(), body, headers)
-			#res = h.getresponse()
-			#return res.read()
+			h.request('POST', req.get_selector(), body, headers)
+			res = h.getresponse()
+			return res.read()
 			return "bah"
 			
-		def encode_multipart_formdata(fields, files):
+		def encode_multipart_formdata(fields, files, BOUNDARY = '-----'+mimetools.choose_boundary()+'-----'):
 			"""
 			fields is a sequence of (name, value) elements for regular form fields.
 			files is a sequence of (name, filename, value) elements for data to be uploaded as files
 			Return (content_type, body) ready for httplib.HTTP instance
 			"""
-			BOUNDARY = '----------ThIs_Is_tHe_bouNdaRY_$'
 			CRLF = '\r\n'
 			L = []
 			for (key, value) in fields:
