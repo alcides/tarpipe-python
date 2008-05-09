@@ -1,3 +1,23 @@
+"""
+
+TarPipe Python API
+
+http://code.google.com/p/tarpipe-python/
+
+(c) 2008 Alcides Aguiar Fonseca
+	(Under LGPL)
+
+To get you started:
+
+import tarpipe
+
+t = tarpipe.TarPipe(token="your workflow token")
+t.upload(title="hello from python",body="testing TarPipe from Python",image="/Users/youruser/Images/test.png")
+
+That's it :)
+
+"""
+
 import urllib
 import urllib2
 import httplib
