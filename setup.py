@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(name='tarpipe-python',
-	version='0.5',
+	version='0.6',
 	description='A Python interface to the TarPipe API',
 	author='Alcides Fonseca',
 	author_email='me@alcidesfonseca.com',
