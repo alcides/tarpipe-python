@@ -36,11 +36,9 @@ class TarPipe:
 				'User-Agent': 'TarPipe-Python',
 				'Content-Type': content_type
 				}
-			print body,headers
 			h.request('POST', req.get_selector(), body, headers)
 			res = h.getresponse()
 			return res.read()
-			return "bah"
 			
 		def encode_multipart_formdata(fields, files, BOUNDARY = '-----'+mimetools.choose_boundary()+'-----'):
 			"""
@@ -72,7 +70,7 @@ class TarPipe:
 		
 		
 		data = [ (k,values[k]) for k in values if values[k] ]		
-		files = [ (k,files[k],open(files[k],"rb")) for k in files if files[k] ]
+		files = [ (k,files[k],open(files[k],"rb").read()) for k in files if files[k] ]
 		
 		req = urllib2.Request(url)
 		response = post_multipart(req,data,files)
@@ -81,6 +79,6 @@ class TarPipe:
 		
 		
 if __name__ == '__main__':
-	t = TarPipe(token = "554b42aa6897eff3e215f54a3470520e")
-	print t.upload(title="hacking around TarPipe Python API")
+	t = TarPipe(token = raw_input("Your workflow token:\t"))
+	print t.upload(title=raw_input("Title:\t"),body=raw_input("Body:\t"),image=raw_input("Image URL:\t"))
 	
